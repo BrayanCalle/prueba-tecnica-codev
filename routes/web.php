@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Livewire\FacturaManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/facturas', function () {
+    return view('facturas');
+})->middleware(['auth'])->name('facturas');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/facturas', FacturaManager::class)->middleware(['auth'])->name('facturas');

@@ -327,6 +327,11 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Facturas',
+            'url'  => 'facturas',
+            'icon' => 'fas fa-fw fa-file-invoice',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
