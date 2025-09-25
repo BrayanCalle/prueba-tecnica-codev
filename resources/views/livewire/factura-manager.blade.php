@@ -42,17 +42,27 @@
                 Lista de Facturas
             </div>
             <div class="card-body">
-                {{-- Aquí irá la tabla para mostrar las facturas --}}
+                @if ($facturas->count() > 0)
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($facturas as $factura)
+                                <tr>
+                                    <td>{{ $factura->cliente->nombre }}</td>
+                                    <td>{{ $factura->producto->producto }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>No hay facturas registradas.</p>
+                @endif
             </div>
-        </div>
-    </div>
-
-    <div class="card mt-4">
-        <div class="card-header">
-            Lista de Facturas
-        </div>
-        <div class="card-body">
-            {{-- Aquí irá la tabla para mostrar las facturas --}}
         </div>
     </div>
 </div>

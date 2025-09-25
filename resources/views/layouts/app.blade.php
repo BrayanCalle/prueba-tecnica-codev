@@ -18,9 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Livewire Styles -->
+    @livewireStyles
 </head>
 <body>
     <div id="app">
+        <h1>Estamos locos lalala</h1>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -79,5 +83,8 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Livewire Scripts -->
+    @livewireScripts
 </body>
 </html>
