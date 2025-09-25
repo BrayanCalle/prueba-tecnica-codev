@@ -7,10 +7,14 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Crear Nueva Factura
+                @if ($facturaAEditarId)
+                    Editar Factura
+                @else
+                    Crear Nueva Factura
+                @endif
             </div>
             <div class="card-body">
-                <form wire:submit.prevent="saveFactura">
+                <form wire:submit.prevent="@if ($facturaAEditarId) updateFactura @else saveFactura @endif">
                     {{-- Campo para seleccionar un cliente --}}
                     <div class="form-group">
                         <label for="cliente">Cliente</label>
@@ -32,7 +36,16 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Guardar Factura</button>
+                    <button type="submit" class="btn btn-primary">
+                        @if ($facturaAEditarId)
+                            Actualizar Factura
+                        @else
+                            Guardar Factura
+                        @endif
+                    </button>
+                    @if ($facturaAEditarId)
+                        <button wire:click="resetearCampos" type="button" class="btn btn-secondary">Cancelar</button>
+                    @endif
                 </form>
             </div>
         </div>
@@ -48,6 +61,7 @@
                             <tr>
                                 <th>Cliente</th>
                                 <th>Producto</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,6 +69,10 @@
                                 <tr>
                                     <td>{{ $factura->cliente->nombre }}</td>
                                     <td>{{ $factura->producto->producto }}</td>
+                                    <td>
+                                        <button wire:click="editFactura({{ $factura->id }})" class="btn btn-sm btn-primary">Editar</button>
+                                        <button wire:click="deleteFactura({{ $factura->id }})" class="btn btn-sm btn-danger">Eliminar</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
